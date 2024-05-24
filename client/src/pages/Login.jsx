@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
+
 
 const Login = () => {
     const [user, setUser] = useState({
@@ -8,6 +10,8 @@ const Login = () => {
         password: ""
     })
     const navigate = useNavigate();
+    const { storeTokenInLS } = useAuth();
+
     const handleInput = (e) => {
         const { name, value } = e.target;
         setUser({
@@ -28,7 +32,7 @@ const Login = () => {
             if(response.statusText === 'OK') {
                 const res_data = await response.data;
                 // console.log("Response from server : ", res_data);
-                localStorage.setItem('token',res_data.token);
+                storeTokenInLS(res_data.token);
                 setUser({
                     email: "",
                     password: ""

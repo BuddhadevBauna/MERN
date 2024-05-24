@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 const Register = () => {
     const [user, setUser] = useState({
@@ -10,6 +11,8 @@ const Register = () => {
         password: "",
     });
     const navigate = useNavigate();
+    const { storeTokenInLS } = useAuth();
+
     const handleInput = (e) => {
         let {name, value} = e.target;
         setUser({
@@ -30,7 +33,7 @@ const Register = () => {
             if(response.statusText == 'Created') {
                 const res_data = await response.data;
                 // console.log("Response from server : ", res_data);
-                localStorage.setItem('token', res_data.token);
+                storeTokenInLS(res_data.token);
                 setUser({
                     username: "",
                     email: "",
