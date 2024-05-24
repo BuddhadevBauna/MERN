@@ -26,6 +26,9 @@ const Login = () => {
             })
             // console.log(response);
             if(response.statusText === 'OK') {
+                const res_data = await response.data;
+                // console.log("Response from server : ", res_data);
+                localStorage.setItem('token',res_data.token);
                 setUser({
                     email: "",
                     password: ""

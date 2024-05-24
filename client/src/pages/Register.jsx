@@ -28,6 +28,9 @@ const Register = () => {
             })
             // console.log(response);
             if(response.statusText == 'Created') {
+                const res_data = await response.data;
+                // console.log("Response from server : ", res_data);
+                localStorage.setItem('token', res_data.token);
                 setUser({
                     username: "",
                     email: "",
