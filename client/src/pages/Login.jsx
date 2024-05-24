@@ -1,10 +1,13 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [user, setUser] = useState({
         email: "",
         password: ""
     })
+    const navigate = useNavigate();
     const handleInput = (e) => {
         const { name, value } = e.target;
         setUser({
@@ -12,9 +15,26 @@ const Login = () => {
             [name]: value
         })
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user);
+        // console.log(user);
+        try {
+            const response = await axios.post(`http://localhost:8080/api/auth/login`, user, {
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            })
+            // console.log(response);
+            if(response.statusText === 'OK') {
+                setUser({
+                    email: "",
+                    password: ""
+                })
+                navigate('/');
+            }
+        } catch (error) {
+            console.log("Login Error", error);
+        }
     }
 
     return (

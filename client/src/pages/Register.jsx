@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [user, setUser] = useState({
@@ -7,6 +9,7 @@ const Register = () => {
         phone: "",
         password: "",
     });
+    const navigate = useNavigate();
     const handleInput = (e) => {
         let {name, value} = e.target;
         setUser({
@@ -14,9 +17,28 @@ const Register = () => {
             [name]: value
         })
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user);
+        // console.log(user);
+        try {
+            const response = await axios.post(`http://localhost:8080/api/auth/register`, user, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            // console.log(response);
+            if(response.statusText == 'Created') {
+                setUser({
+                    username: "",
+                    email: "",
+                    phone: "",
+                    password: ""
+                })
+                navigate('/login');
+            }
+        } catch (error) {
+            console.log("Registration Error", error)
+        }
     }
 
     return (
