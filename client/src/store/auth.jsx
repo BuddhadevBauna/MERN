@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import axios from 'axios';
 
 
 //context api(create context, provider, consumer)
@@ -21,8 +22,31 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('token');
     }
     
+    //jwt authentication - to get currently logedIn user data
+    const [user, setUser] = useState("");
+    const userAuthentication = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/auth/user`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            // console.log(response);
+            if(response.statusText === "OK") {
+                const data = response.data;
+                // console.log("user data", data.userData);
+                setUser(data.userData);
+            }
+        } catch (error) {
+            console.log("Error fetching userdata");
+        }
+    }
+    useEffect(() => {
+        userAuthentication();
+    }, [])
+
     return (
-        <AuthContext.Provider value={{storeTokenInLS, isLoggedIn, LogoutUser}}>
+        <AuthContext.Provider value={{storeTokenInLS, isLoggedIn, LogoutUser, user}}>
             {children}
         </AuthContext.Provider>
     );

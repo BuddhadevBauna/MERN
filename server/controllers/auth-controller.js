@@ -82,7 +82,7 @@ const user = async (req, res) => {
         // console.log(userData);
         // console.log(req.token);
         res.status(200).
-            json({ msg: userData });
+            json({ userData });
     } catch (error) {
         console.log(`error from user route ${error}`);
     }
