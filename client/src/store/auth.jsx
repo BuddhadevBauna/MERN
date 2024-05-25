@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
     const [token, setToken] = useState(localStorage.getItem('token'));
     let isLoggedIn = !!token;
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
     //Tackling the logout functionality
     const LogoutUser = () => {
         setToken("");
