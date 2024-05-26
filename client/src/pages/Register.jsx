@@ -30,9 +30,10 @@ const Register = () => {
                 },
             })
             // console.log(response);
-            if(response.statusText == 'Created') {
-                const res_data = await response.data;
-                // console.log("Response from server : ", res_data);
+
+            const res_data = await response.data;
+            console.log("Response from server : ", res_data);
+            if(response.statusText === "Created") {
                 storeTokenInLS(res_data.token);
                 setUser({
                     username: "",
@@ -42,8 +43,12 @@ const Register = () => {
                 })
                 navigate('/login');
             }
-        } catch (error) {
-            console.log("Registration Error", error)
+        } catch (err) {
+            console.log("Registration Error", err);
+            // console.log(err.response.data);
+            const msg1 = err.response.data.extraDetails;
+            const error = msg1 ? msg1 : err.response.data.message;
+            alert(error);
         }
     }
 

@@ -22,7 +22,7 @@ const register = async (req, res) => {
         //check the email is exist or not
         const userExist = await User.findOne({ email });
         if (userExist) {
-            return res.status(400).json({ msg: "email already exist." });
+            return res.status(400).json({ message: "email already exist." });
         }
 
         // hash the password
