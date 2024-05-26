@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 const Register = () => {
     const [user, setUser] = useState({
@@ -41,6 +42,7 @@ const Register = () => {
                     phone: "",
                     password: ""
                 })
+                toast.success("Registration sucessful.");
                 navigate('/login');
             }
         } catch (err) {
@@ -48,7 +50,7 @@ const Register = () => {
             // console.log(err.response.data);
             const msg1 = err.response.data.extraDetails;
             const error = msg1 ? msg1 : err.response.data.message;
-            alert(error);
+            toast.error(error);
         }
     }
 

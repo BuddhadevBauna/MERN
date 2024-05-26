@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 
 const Login = () => {
@@ -37,13 +38,14 @@ const Login = () => {
                     email: "",
                     password: ""
                 })
+                toast.success("Login suscessful.");
                 navigate('/');
             }
         } catch (err) {
             console.log("Login Error", err);
             const msg1 = err.response.data.extraDetails;
             const error = msg1 ? msg1 : err.response.data.message;
-            alert(error);
+            toast.error(error);
         }
     }
 
