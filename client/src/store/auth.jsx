@@ -45,8 +45,27 @@ export const AuthProvider = ({ children }) => {
         userAuthentication();
     }, [])
 
+
+    // to fetch the services data from databases
+    const [services, setservices] = useState([]);
+    const fetchServices = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/data/service`);
+            // console.log(response);
+            if(response.statusText === "OK") {
+                // console.log(response.data);
+                setservices(response.data);
+            }
+        } catch (error) {
+            console.log(`fetch services error ${error}`);
+        }
+    }
+    useEffect(() => {
+        fetchServices();
+    }, [])
+
     return (
-        <AuthContext.Provider value={{storeTokenInLS, isLoggedIn, LogoutUser, user}}>
+        <AuthContext.Provider value={{storeTokenInLS, isLoggedIn, LogoutUser, user, services}}>
             {children}
         </AuthContext.Provider>
     );

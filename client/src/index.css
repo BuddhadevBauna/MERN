@@ -353,3 +353,43 @@ a:active {
   background: var(--btn-color);
   color: #fff;
 }
+
+
+/* service section */
+.section-services {
+  & .container:first-child {
+    padding: 0;
+  }
+  & .grid-col-3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.2rem;
+  }
+  & .card {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    border: 0.2rem solid var(--helper-color);
+    & .card-img {
+      text-align: center;
+      & img {
+        width: 70%;
+        height: auto;
+        filter: drop-shadow(0 0 2rem 2rem #fff);
+        -webkit-filter: drop-shadow(0 0 2rem 2rem #fff);
+      }
+    }
+    & .card-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 2.4rem;
+      padding-top: 0;
+      & .grid p {
+        font-size: 1.4rem;
+      }
+      & h2 {
+        font-size: 3.2rem;
+      }
+    }
+  }
+}
