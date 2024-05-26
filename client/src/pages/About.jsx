@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Analytics } from "../components/Analytics";
+import { useAuth } from "../store/auth";
 
 const About = () => {
+    const { user } = useAuth();
+    // console.log(user);
     return (
         <>
             <main>
@@ -11,7 +14,7 @@ const About = () => {
                     <div className="container grid grid-col-2">
                         <div className="hero-content">
                             <p>
-                                Welcome, Smart Technical
+                                Welcome, {user ? `${user.username} to our website` : "to our website"}
                             </p>
                             <h1>Why Choose Us? </h1>
                             <p>

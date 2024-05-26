@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useAuth } from "../store/auth";
+import axios from "axios";
 
 const Contact = () => {
-    const [contact, setContact] = useState({
+    const defaultContactFormData ={
         username: "",
         email: "",
         message: "",
-    })
+    }
+    const [contact, setContact] = useState(defaultContactFormData);
 
     const [userData, setUserData] = useState(true);
     const { user } = useAuth();
@@ -28,10 +30,24 @@ const Contact = () => {
             [name]: value
         })
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(contact);
+        // console.log(contact);
+        try {
+            const response = await axios.post(`http://localhost:8080/api/form/contact`, contact, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            // console.log(response);
+            if(response.statusText === "OK") {
+                setContact(defaultContactFormData);
+            }
+        } catch (error) {
+            console.log(`contact error ${error}`)
+        }
     }
+
 
     return (
         <>
