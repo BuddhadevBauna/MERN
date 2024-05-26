@@ -43,7 +43,7 @@ const Register = () => {
                     password: ""
                 })
                 toast.success("Registration sucessful.");
-                navigate('/login');
+                navigate('/');
             }
         } catch (err) {
             console.log("Registration Error", err);

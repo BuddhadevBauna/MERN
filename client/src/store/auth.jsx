@@ -8,12 +8,16 @@ export const AuthContext = createContext();
 
 //provider(for data passing)
 export const AuthProvider = ({ children }) => {
+    const [token, setToken] = useState(localStorage.getItem('token'));
+    const [user, setUser] = useState("");
+    const [services, setservices] = useState([]);
+
     //for store token
     const storeTokenInLS = (token) => {
+        setToken(token);
         return localStorage.setItem('token', token);
     }
 
-    const [token, setToken] = useState(localStorage.getItem('token'));
     let isLoggedIn = !!token;
     // console.log(isLoggedIn);
     //Tackling the logout functionality
@@ -23,7 +27,6 @@ export const AuthProvider = ({ children }) => {
     }
     
     //jwt authentication - to get currently logedIn user data
-    const [user, setUser] = useState("");
     const userAuthentication = async () => {
         try {
             const response = await axios.get(`http://localhost:8080/api/auth/user`, {
@@ -47,7 +50,6 @@ export const AuthProvider = ({ children }) => {
 
 
     // to fetch the services data from databases
-    const [services, setservices] = useState([]);
     const fetchServices = async () => {
         try {
             const response = await axios.get(`http://localhost:8080/api/data/service`);
