@@ -39,8 +39,11 @@ const Login = () => {
                 })
                 navigate('/');
             }
-        } catch (error) {
-            console.log("Login Error", error);
+        } catch (err) {
+            console.log("Login Error", err);
+            const msg1 = err.response.data.extraDetails;
+            const error = msg1 ? msg1 : err.response.data.message;
+            alert(error);
         }
     }
 
