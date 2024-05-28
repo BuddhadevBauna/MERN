@@ -26,14 +26,14 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "logout", element: <Logout /> },
       { path: "*", element: <Error /> },
-      {
-        path: "admin", element: <AdminLayout />,
-        children: [
-          { path: "users", element: <AdminUsers /> },
-          { path: "contacts", element: <AdminContacts /> },
-        ]
-      },
     ],
+  },
+  {
+    path: "admin", element: <AdminLayout />,
+    children: [
+      { path: "users", element: <AdminUsers /> },
+      { path: "contacts", element: <AdminContacts /> },
+    ]
   },
 ]);
 
