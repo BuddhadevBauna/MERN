@@ -21,6 +21,19 @@ const AdminUsers = () => {
     useEffect(() => {
         getAllUsersData();
     }, []);
+    const deleteUser = async (id) => {
+        // console.log(id);
+        try {
+            const response = await axios.delete(`http://localhost:8080/api/admin//users/delete/${id}`, {
+                headers: {
+                    Authorization: AuthorizationToken
+                }
+            });
+            console.log("users delete", response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <>
@@ -48,7 +61,7 @@ const AdminUsers = () => {
                                             <td>{ curUser.email }</td>
                                             <td>{ curUser.phone }</td>
                                             <td>Edit</td>
-                                            <td>Delete</td>
+                                            <td><button onClick={() => deleteUser(curUser._id)}></button>Delete</td>
                                         </tr>
                                     );
                                 })
