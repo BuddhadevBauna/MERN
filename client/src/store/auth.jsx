@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [user, setUser] = useState("");
     const [services, setservices] = useState([]);
+    const AuthorizationToken = `Bearer ${token}`;
 
     //for store token
     const storeTokenInLS = (token) => {
@@ -25,17 +26,17 @@ export const AuthProvider = ({ children }) => {
         setToken("");
         localStorage.removeItem('token');
     }
-    
+
     //jwt authentication - to get currently logedIn user data
     const userAuthentication = async () => {
         try {
             const response = await axios.get(`http://localhost:8080/api/auth/user`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: AuthorizationToken
                 }
             })
             // console.log(response);
-            if(response.statusText === "OK") {
+            if (response.statusText === "OK") {
                 const data = response.data;
                 // console.log("user data", data.userData);
                 setUser(data.userData);
@@ -54,7 +55,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await axios.get(`http://localhost:8080/api/data/service`);
             // console.log(response);
-            if(response.statusText === "OK") {
+            if (response.statusText === "OK") {
                 // console.log(response.data);
                 setservices(response.data);
             }
@@ -67,7 +68,16 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{storeTokenInLS, isLoggedIn, LogoutUser, user, services}}>
+        <AuthContext.Provider
+            value={{
+                storeTokenInLS,
+                isLoggedIn,
+                LogoutUser,
+                user,
+                services,
+                AuthorizationToken
+            }}
+        >
             {children}
         </AuthContext.Provider>
     );
@@ -77,7 +87,7 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
     //Usecontext use for consumer
     const authContextValue = useContext(AuthContext);
-    if(!authContextValue) {
+    if (!authContextValue) {
         console.log("useauth used outside of the provider.");
     }
     return authContextValue;
