@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
+import { Link } from "react-router-dom";
 
 const AdminUsers = () => {
     const [users, setUsers] = useState([]);
@@ -57,11 +58,15 @@ const AdminUsers = () => {
                                 users.map((curUser, index) => {
                                     return (
                                         <tr key={index}>
-                                            <td>{ curUser.username }</td>
-                                            <td>{ curUser.email }</td>
-                                            <td>{ curUser.phone }</td>
-                                            <td>Edit</td>
-                                            <td><button onClick={() => deleteUser(curUser._id)}>Delete</button></td>
+                                            <td>{curUser.username}</td>
+                                            <td>{curUser.email}</td>
+                                            <td>{curUser.phone}</td>
+                                            <td>
+                                                <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
+                                            </td>
+                                            <td>
+                                                <button onClick={() => deleteUser(curUser._id)}>Delete</button>
+                                            </td>
                                         </tr>
                                     );
                                 })

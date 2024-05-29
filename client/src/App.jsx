@@ -13,6 +13,7 @@ import AdminLayout from "./components/layouts/AdminLayout";
 import AdminUsers from "./pages/AdminUsers";
 import AdminContacts from "./pages/AdminContacts";
 import AdminServices from "./pages/AdminServices";
+import AdminUpdate from "./pages/AdmimUpdate";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
     children: [
       { path: "users", element: <AdminUsers /> },
       { path: "contacts", element: <AdminContacts /> },
+      { path: "users/:id/edit", element: <AdminUpdate /> },
     ]
   },
 ]);
