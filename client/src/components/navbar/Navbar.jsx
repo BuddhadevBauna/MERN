@@ -6,6 +6,7 @@ import { useAuth } from "../../store/auth";
 
 const Navabar = () => {
     const { isLoggedIn } = useAuth();
+    // console.log(isLoggedIn);
     return (
         <>
             <header>

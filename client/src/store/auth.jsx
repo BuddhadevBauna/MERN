@@ -9,21 +9,23 @@ export const AuthContext = createContext();
 //provider(for data passing)
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token'));
+    const [isLoggedIn, setLoggedIn] = useState(!!token);
     const [user, setUser] = useState("");
     const [services, setservices] = useState([]);
     const AuthorizationToken = `Bearer ${token}`;
+    
 
     //for store token
     const storeTokenInLS = (token) => {
         setToken(token);
-        return localStorage.setItem('token', token);
+        setLoggedIn(true);
+        localStorage.setItem('token', token);
     }
 
-    let isLoggedIn = !!token;
-    // console.log(isLoggedIn);
     //Tackling the logout functionality
     const LogoutUser = () => {
         setToken("");
+        setLoggedIn(false);
         localStorage.removeItem('token');
     }
 
@@ -46,8 +48,12 @@ export const AuthProvider = ({ children }) => {
         }
     }
     useEffect(() => {
-        userAuthentication();
-    }, [])
+        if(token) {
+            userAuthentication();
+        } else {
+            setUser("");
+        }
+    }, [token]);
 
 
     // to fetch the services data from databases
