@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AdminUsers = () => {
     const [users, setUsers] = useState([]);
@@ -30,9 +31,13 @@ const AdminUsers = () => {
                     Authorization: AuthorizationToken
                 }
             });
-            console.log("users delete", response);
+            if(response.statusText === "OK") {
+                // console.log("users delete", response);
+                toast.success("deleted user sucessfully");
+            }
         } catch (error) {
             console.log(error);
+            toast.error("delete user unsucessfull");
         }
     }
 

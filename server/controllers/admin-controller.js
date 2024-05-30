@@ -75,5 +75,18 @@ const getAllContacts = async (req, res) => {
             .json({ message: "fetch contacts unsucessful" })
     }
 }
+//delete single contact
+const deleteContactById = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const deleteContact = await Contact.findByIdAndDelete({_id: id});
+        if(!deleteContact) {
+            return res.status(400).json({message: "contact not found"})
+        }
+        return res.status(200).json({message: "contact deleted sucessfully"});
+    } catch (error) {
+        return res.status(401).json({message: `delete contact unsucessful ${error}`})
+    }
+}
 
-export default { getAllUsers, getUserById, updateUserById, deleteUserById, getAllContacts };
+export default { getAllUsers, getUserById, updateUserById, deleteUserById, getAllContacts, deleteContactById};
