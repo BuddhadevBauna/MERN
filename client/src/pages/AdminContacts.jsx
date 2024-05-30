@@ -24,7 +24,7 @@ const AdminContacts = () => {
     useEffect(() => {
         getAllContacts();
     }, []);
-    const handleDelete = async (id) => {
+    const deleteContact = async (id) => {
         try {
             const response = await axios.delete(`http://localhost:8080/api/admin/contacts/delete/${id}`, {
                 headers: {
@@ -34,6 +34,7 @@ const AdminContacts = () => {
             if(response.statusText === "OK") {
                 // console.log("deleted contact sucessfull", response);
                 toast.success("deleted contact sucessfully");
+                getAllContacts();
             }
         } catch (error) {
             console.log(error);
@@ -54,7 +55,7 @@ const AdminContacts = () => {
                                     <p>{username}</p>
                                     <p>{email}</p>
                                     <p>{message}</p>
-                                    <button className="btn" onClick={() => handleDelete(_id)}>delete</button>
+                                    <button className="btn" onClick={() => deleteContact(_id)}>delete</button>
                                 </div>
                             )
                         })

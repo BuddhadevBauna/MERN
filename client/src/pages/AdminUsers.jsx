@@ -34,6 +34,7 @@ const AdminUsers = () => {
             if(response.statusText === "OK") {
                 // console.log("users delete", response);
                 toast.success("deleted user sucessfully");
+                getAllUsersData();
             }
         } catch (error) {
             console.log(error);
