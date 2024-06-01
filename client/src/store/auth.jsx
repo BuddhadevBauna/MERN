@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }) => {
     //jwt authentication - to get currently logedIn user data
     const userAuthentication = async () => {
         try {
-            setIsLoading(true);
             const response = await axios.get(`http://localhost:8080/api/auth/user`, {
                 headers: {
                     Authorization: AuthorizationToken
@@ -48,6 +47,7 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (error) {
             console.log("Error fetching userdata");
+        } finally {
             setIsLoading(false);
         }
     }
@@ -56,6 +56,7 @@ export const AuthProvider = ({ children }) => {
             userAuthentication();
         } else {
             setUser("");
+            setIsLoading(false);
         }
     }, [token]);
 
