@@ -1,6 +1,7 @@
 import Service from "../models/service-model.js";
 
-const services = async (req, res) => {
+//get all getServices
+const getServices = async (req, res) => {
     try {
         const response = await Service.find({});
         // console.log(response);
@@ -9,8 +10,8 @@ const services = async (req, res) => {
         }
         res.status(200).json(response);
     } catch (error) {
-        console.log(`services ${error}`);
+        console.error(`getServices ${error}`);
     }
 }
 
-export default services;
+export default getServices;

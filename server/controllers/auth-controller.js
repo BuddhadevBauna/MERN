@@ -1,15 +1,4 @@
 import User from "../models/user-model.js";
-// import bcrypt from "bcryptjs";
-
-const home = async (req, res) => {
-    try {
-        res
-            .status(200)
-            .send("Learning mern series from thapa technical...");
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 //User register logic
 const register = async (req, res) => {
@@ -89,4 +78,4 @@ const user = async (req, res) => {
 }
 
 
-export default { home, register, login, user };
+export default { register, login, user };

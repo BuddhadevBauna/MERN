@@ -1,8 +1,10 @@
 import express from "express";
-import services from "../controllers/service-controller.js";
+import getServices from "../controllers/service-controller.js";
 
 const router = express.Router();
 
-router.route('/service').get(services);
+router
+    .route('/service')
+    .get(getServices);
 
 export default router;

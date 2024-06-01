@@ -23,9 +23,11 @@ app.use(cors(corsOptions));
 //for use request body data as json
 app.use(express.json());
 
+//user
 app.use('/api/auth', authRoute);
 app.use('/api/form', contactRoute);
 app.use('/api/data', serviceRoute);
+//admin
 app.use('/api/admin/', adminRoute)
 
 app.use(errorMiddleware);
