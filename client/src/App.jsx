@@ -1,18 +1,23 @@
 import React from "react";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+//pages
 import Root from "./pages/Root";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Service from "./pages/Service";
+import Services from "./pages/Services";
 import { Error } from "./pages/Error";
-import Logout from "./pages/Logout";
-import AdminLayout from "./components/layouts/AdminLayout";
-import AdminUsers from "./pages/AdminUsers";
-import AdminContacts from "./pages/AdminContacts";
-import AdminUpdate from "./pages/AdmimUpdate";
+//Auth
+import Register from "./Auth/Register";
+import Login from "./Auth/Login";
+import Logout from "./Auth/Logout";
+//Layout
+import AdminLayout from "./layouts/AdminLayout";
+//Admin
+import ManageUsers from "./admin/manage-users/ManageUsers";
+import ManageContacts from "./admin/manage-contact/MangeContacts";
+import UserUpdate from "./admin/manage-users/UserUpdate";
+
 
 const router = createBrowserRouter([
   {
@@ -21,7 +26,7 @@ const router = createBrowserRouter([
       { path: "", element: <Home/> },
       { path: "about", element: <About/> },
       { path: "contact", element: <Contact /> },
-      { path: "services", element: <Service /> },
+      { path: "services", element: <Services /> },
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
       { path: "logout", element: <Logout /> },
@@ -31,9 +36,9 @@ const router = createBrowserRouter([
   {
     path: "admin", element: <AdminLayout />,
     children: [
-      { path: "users", element: <AdminUsers /> },
-      { path: "contacts", element: <AdminContacts /> },
-      { path: "users/:id/edit", element: <AdminUpdate /> },
+      { path: "users", element: <ManageUsers /> },
+      { path: "users/:id/edit", element: <UserUpdate /> },
+      { path: "contacts", element: <ManageContacts /> },
     ],
   },
 ]);

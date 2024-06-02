@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useAuth } from "../store/auth";
+import { useAuth } from "../../store/auth";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const AdminUsers = () => {
+const ManageUsers = () => {
     const [users, setUsers] = useState([]);
     const { AuthorizationToken } = useAuth();
     const getAllUsersData = async (req, res) => {
@@ -85,4 +85,4 @@ const AdminUsers = () => {
     );
 }
 
-export default AdminUsers;
+export default ManageUsers;

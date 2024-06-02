@@ -1,10 +1,10 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaHome, FaRegListAlt, FaUser } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
-import { useAuth } from "../../store/auth";
-import { Error } from "../../pages/Error";
+import { useAuth } from "../store/auth";
+import { Error } from "../pages/Error";
 
-const AdminLayout = () => {
+const AdminDashboard = () => {
     const { user, isLoading } = useAuth();
     // console.log("Admin layout", user, isLoading);
     if(isLoading) {
@@ -26,9 +26,8 @@ const AdminLayout = () => {
                     </nav>
                 </div>
             </header>
-            <Outlet />
         </>
     );
 }
 
-export default AdminLayout;
+export default AdminDashboard;

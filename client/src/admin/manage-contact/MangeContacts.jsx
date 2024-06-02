@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useAuth } from "../store/auth";
+import { useAuth } from "../../store/auth";
 import { toast } from "react-toastify";
 
-const AdminContacts = () => {
+const ManageContacts = () => {
     const [contacts, setContacts] = useState([]);
     const { AuthorizationToken } = useAuth();
     const getAllContacts = async () => {
@@ -66,4 +66,4 @@ const AdminContacts = () => {
     );
 }
 
-export default AdminContacts;
+export default ManageContacts;

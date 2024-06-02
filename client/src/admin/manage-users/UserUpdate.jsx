@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAuth } from "../store/auth";
+import { useAuth } from "../../store/auth";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const AdminUpdate = () => {
+const UserUpdate = () => {
     const [data, setData] = useState({
         username: "",
         email: "",
@@ -128,4 +128,4 @@ const AdminUpdate = () => {
     )
 }
 
-export default AdminUpdate;
+export default UserUpdate;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAuth } from "../store/auth";
 
 
-const Service = () => {
+const Services = () => {
     const { services } = useAuth();
     // console.log(services);
 
@@ -39,4 +39,4 @@ const Service = () => {
     );
 }
 
-export default Service;
+export default Services;
