@@ -63,16 +63,16 @@ const UserUpdate = () => {
         <>
             <section>
                 <main>
-                    <div className="section-contact">
-                        <div className="contact-content container">
-                            <h1 className="main-heading">
+                    <div className="section-update admin">
+                        <div className="container">
+                            <h1>
                                 update user data
                             </h1>
                         </div>
                         {/* data container */}
-                        <div className="container grid grid-col-2">
+                        <div className="container">
                             {/* data form */}
-                            <div className="contact-form">
+                            <div className="update-form">
                                 <form onSubmit={handleSubmit}>
                                     <div>
                                         <label htmlFor="username">username</label>

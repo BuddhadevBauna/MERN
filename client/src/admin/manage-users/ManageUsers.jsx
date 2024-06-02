@@ -31,7 +31,7 @@ const ManageUsers = () => {
                     Authorization: AuthorizationToken
                 }
             });
-            if(response.statusText === "OK") {
+            if (response.statusText === "OK") {
                 // console.log("users delete", response);
                 toast.success("deleted user sucessfully");
                 getAllUsersData();
@@ -44,11 +44,11 @@ const ManageUsers = () => {
 
     return (
         <>
-            <section className="admin-users-section">
+            <section className="admin admin-users-section">
                 <div className="container">
                     <h1>Admin Users Data</h1>
                 </div>
-                <div className="container admin-users">
+                <div className="container admin-container admin-users">
                     <table>
                         <thead>
                             <tr>
@@ -68,7 +68,9 @@ const ManageUsers = () => {
                                             <td>{curUser.email}</td>
                                             <td>{curUser.phone}</td>
                                             <td>
-                                                <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
+                                                <button>
+                                                    <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
+                                                </button>
                                             </td>
                                             <td>
                                                 <button onClick={() => deleteUser(curUser._id)}>Delete</button>

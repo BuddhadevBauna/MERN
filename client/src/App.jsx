@@ -17,6 +17,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import ManageUsers from "./admin/manage-users/ManageUsers";
 import ManageContacts from "./admin/manage-contact/MangeContacts";
 import UserUpdate from "./admin/manage-users/UserUpdate";
+import ManageService from "./admin/manage-services/ManageService";
 
 
 const router = createBrowserRouter([
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
   {
     path: "admin", element: <AdminLayout />,
     children: [
+      { path: "services", element: <ManageService /> },
       { path: "users", element: <ManageUsers /> },
       { path: "users/:id/edit", element: <UserUpdate /> },
       { path: "contacts", element: <ManageContacts /> },

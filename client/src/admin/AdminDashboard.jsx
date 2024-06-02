@@ -7,9 +7,9 @@ import { Error } from "../pages/Error";
 const AdminDashboard = () => {
     const { user, isLoading } = useAuth();
     // console.log("Admin layout", user, isLoading);
-    if(isLoading) {
+    if (isLoading) {
         return <h1>Loading...</h1>
-    } else if(!user.isAdmin) {
+    } else if (!user.isAdmin) {
         return <Error />
     }
     return (
@@ -18,10 +18,10 @@ const AdminDashboard = () => {
                 <div className="container">
                     <nav>
                         <ul>
+                            <li><NavLink to={'/'}><FaHome />Home</NavLink></li>
+                            <li><NavLink to={'/admin/services'}><FaRegListAlt />services</NavLink></li>
                             <li><NavLink to={'/admin/users'}><FaUser />users</NavLink></li>
                             <li><NavLink to={'/admin/contacts'}><FaMessage />contacts</NavLink></li>
-                            <li><NavLink to={'/services'}><FaRegListAlt />services</NavLink></li>
-                            <li><NavLink to={'/'}><FaHome />Home</NavLink></li>
                         </ul>
                     </nav>
                 </div>
