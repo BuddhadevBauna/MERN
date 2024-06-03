@@ -15,9 +15,11 @@ import Logout from "./Auth/Logout";
 import AdminLayout from "./layouts/AdminLayout";
 //Admin
 import ManageUsers from "./admin/manage-users/ManageUsers";
-import ManageContacts from "./admin/manage-contact/MangeContacts";
 import UserUpdate from "./admin/manage-users/UserUpdate";
 import ManageService from "./admin/manage-services/ManageService";
+import ServiceAdd from "./admin/manage-services/ServiceAdd";
+import ServiceUpdate from "./admin/manage-services/ServiceUpdate";
+import ManageContacts from "./admin/manage-contact/MangeContacts";
 
 
 const router = createBrowserRouter([
@@ -37,9 +39,14 @@ const router = createBrowserRouter([
   {
     path: "admin", element: <AdminLayout />,
     children: [
+      //service
       { path: "services", element: <ManageService /> },
+      { path: "services/create", element: <ServiceAdd /> },
+      { path: "services/:id/edit", element: <ServiceUpdate /> },
+      //user
       { path: "users", element: <ManageUsers /> },
       { path: "users/:id/edit", element: <UserUpdate /> },
+      //contact
       { path: "contacts", element: <ManageContacts /> },
     ],
   },

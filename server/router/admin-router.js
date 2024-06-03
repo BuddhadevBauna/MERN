@@ -21,7 +21,7 @@ router
 
 //service
 router
-    .route('/service')
+    .route('/service/add')
     .post(authMiddleware, adminMiddleware, adminController.postService);
 router
     .route('/services/:id')

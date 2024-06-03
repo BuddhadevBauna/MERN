@@ -13,6 +13,7 @@ const UserUpdate = () => {
     const params = useParams();
     // console.log("params single user", params);
     const { AuthorizationToken } = useAuth();
+
     const getSingleUserData = async () => {
         try {
             const response = await axios.get(`http://localhost:8080/api/admin/users/${params.id}`, {
@@ -43,7 +44,7 @@ const UserUpdate = () => {
         // console.log(data);
         // console.log(params.id);
         try {
-            const response = await axios.patch(`http://localhost:8080/api/admin//users/update/${params.id}`, data, {
+            const response = await axios.patch(`http://localhost:8080/api/admin/users/update/${params.id}`, data, {
                 headers: {
                     Authorization: AuthorizationToken,
                     "Content-Type": 'application/json',
@@ -69,9 +70,7 @@ const UserUpdate = () => {
                                 update user data
                             </h1>
                         </div>
-                        {/* data container */}
                         <div className="container">
-                            {/* data form */}
                             <div className="update-form">
                                 <form onSubmit={handleSubmit}>
                                     <div>

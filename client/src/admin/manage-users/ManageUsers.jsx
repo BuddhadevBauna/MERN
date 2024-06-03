@@ -62,18 +62,19 @@ const ManageUsers = () => {
                         <tbody>
                             {
                                 users.map((curUser, index) => {
+                                    const { _id, username, email, phone } = curUser;
                                     return (
                                         <tr key={index}>
-                                            <td>{curUser.username}</td>
-                                            <td>{curUser.email}</td>
-                                            <td>{curUser.phone}</td>
+                                            <td>{username}</td>
+                                            <td>{email}</td>
+                                            <td>{phone}</td>
                                             <td>
                                                 <button>
-                                                    <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
+                                                    <Link to={`/admin/users/${_id}/edit`}>Edit</Link>
                                                 </button>
                                             </td>
                                             <td>
-                                                <button onClick={() => deleteUser(curUser._id)}>Delete</button>
+                                                <button onClick={() => deleteUser(_id)}>Delete</button>
                                             </td>
                                         </tr>
                                     );
