@@ -8,6 +8,7 @@ export const AuthContext = createContext();
 
 //provider(for data passing)
 export const AuthProvider = ({ children }) => {
+    const [serverIssue, setServerIssue] = useState(false);
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [isLoggedIn, setLoggedIn] = useState(!!token);
     const [isLoading, setIsLoading] = useState(true);
@@ -15,6 +16,22 @@ export const AuthProvider = ({ children }) => {
     const [services, setservices] = useState([]);
     const AuthorizationToken = `Bearer ${token}`;
     
+    //server error
+    const checkServerStatus = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/api/status');
+            // console.log(response);
+            if (response.status !== 200) {
+                setServerIssue(true);
+            }
+        } catch (error) {
+            setServerIssue(true);
+        }
+    }
+    useEffect(() => {
+        checkServerStatus();
+    }, []);
+
 
     //for store token
     const storeTokenInLS = (token) => {
@@ -81,6 +98,7 @@ export const AuthProvider = ({ children }) => {
     return (
         <AuthContext.Provider
             value={{
+                serverIssue,
                 storeTokenInLS,
                 isLoggedIn,
                 LogoutUser,

@@ -1,14 +1,20 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navabar from "../components/navbar/Navbar";
 import { Footer } from "../components/footer/Footer";
+import { useAuth } from "../store/auth";
 
 const Root = () => {
+    const { serverIssue } = useAuth();
+    const location = useLocation();
+
+    const isServiceRoute = location.pathname.startsWith('/services');
+    
     return (
         <>
-            <Navabar />
+            {!(isServiceRoute && serverIssue) && <Navabar />}
             <Outlet />
-            <Footer />
+            {!(isServiceRoute && serverIssue) && <Footer />}
         </>
     );
 };

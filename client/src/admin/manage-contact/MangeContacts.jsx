@@ -31,7 +31,7 @@ const ManageContacts = () => {
                     Authorization: AuthorizationToken
                 }
             });
-            if(response.statusText === "OK") {
+            if (response.statusText === "OK") {
                 // console.log("deleted contact sucessfull", response);
                 toast.success("deleted contact sucessfully");
                 getAllContacts();
@@ -44,22 +44,38 @@ const ManageContacts = () => {
 
     return (
         <>
-            <section className="admin-contacts-section">
-                <h1>Admin Contact Data</h1>
-                <div className="container admin-users">
-                    {
-                        contacts.map((curContact, index) => {
-                            const {_id, username, email, message } = curContact;
-                            return (
-                                <div key={index}>
-                                    <p>{username}</p>
-                                    <p>{email}</p>
-                                    <p>{message}</p>
-                                    <button className="btn" onClick={() => deleteContact(_id)}>delete</button>
-                                </div>
-                            )
-                        })
-                    }
+            <section className="admin admin-contacts-section">
+                <div className="container">
+                    <h1>All conatcts Data</h1>
+                </div>
+                <div className="container admin-container admin-contacts">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                contacts.map((curContact, index) => {
+                                    const { _id, username, email, message } = curContact;
+                                    return (
+                                        <tr key={index}>
+                                            <td>{username}</td>
+                                            <td>{email}</td>
+                                            <td>{message}</td>
+                                            <td className="admin-btn">
+                                                <button onClick={() => deleteContact(_id)}>Delete</button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </>

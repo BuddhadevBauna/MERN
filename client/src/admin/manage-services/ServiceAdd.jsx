@@ -4,13 +4,13 @@ import { useAuth } from "../../store/auth";
 import { toast } from "react-toastify";
 
 const ServiceAdd = () => {
+    const { AuthorizationToken} = useAuth();
     const [data, setData] = useState({
         service: "",
         description: "",
         provider: "",
         price: ""
-    })
-    const { AuthorizationToken } = useAuth();
+    });
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -42,6 +42,7 @@ const ServiceAdd = () => {
             toast.error("Service add unsucessful");
         }
     }
+    
     return (
         <>
             <section>

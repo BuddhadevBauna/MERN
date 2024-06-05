@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { FaHome, FaRegListAlt, FaUser } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import { useAuth } from "../store/auth";
-import { Error } from "../pages/Error";
+import { ClientError } from "../Error/ClientError";
 
 const AdminDashboard = () => {
     const { user, isLoading } = useAuth();
@@ -10,18 +10,18 @@ const AdminDashboard = () => {
     if (isLoading) {
         return <h1>Loading...</h1>
     } else if (!user.isAdmin) {
-        return <Error />
+        return <ClientError />
     }
     return (
         <>
             <header>
-                <div className="container">
+                <div className="container admin-dashboard-container">
                     <nav>
                         <ul>
-                            <li><NavLink to={'/'}><FaHome />Home</NavLink></li>
-                            <li><NavLink to={'/admin/services'}><FaRegListAlt />services</NavLink></li>
-                            <li><NavLink to={'/admin/users'}><FaUser />users</NavLink></li>
-                            <li><NavLink to={'/admin/contacts'}><FaMessage />contacts</NavLink></li>
+                            <li><NavLink to={'/'}><i><FaHome /></i>Home</NavLink></li>
+                            <li><NavLink to={'/admin/services'}><i><FaRegListAlt /></i>services</NavLink></li>
+                            <li><NavLink to={'/admin/users'}><i><FaUser /></i>users</NavLink></li>
+                            <li><NavLink to={'/admin/contacts'}><i><FaMessage /></i>contacts</NavLink></li>
                         </ul>
                     </nav>
                 </div>

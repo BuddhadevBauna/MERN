@@ -46,7 +46,7 @@ const ManageUsers = () => {
         <>
             <section className="admin admin-users-section">
                 <div className="container">
-                    <h1>Admin Users Data</h1>
+                    <h1>All Users Data</h1>
                 </div>
                 <div className="container admin-container admin-users">
                     <table>
@@ -62,18 +62,18 @@ const ManageUsers = () => {
                         <tbody>
                             {
                                 users.map((curUser, index) => {
-                                    const { _id, username, email, phone } = curUser;
+                                    const { _id, username, email, phone, isAdmin } = curUser;
                                     return (
                                         <tr key={index}>
-                                            <td>{username}</td>
+                                            <td>{isAdmin ? `${username}*` : username}</td>
                                             <td>{email}</td>
                                             <td>{phone}</td>
-                                            <td>
+                                            <td className="admin-btn">
                                                 <button>
                                                     <Link to={`/admin/users/${_id}/edit`}>Edit</Link>
                                                 </button>
                                             </td>
-                                            <td>
+                                            <td className="admin-btn">
                                                 <button onClick={() => deleteUser(_id)}>Delete</button>
                                             </td>
                                         </tr>

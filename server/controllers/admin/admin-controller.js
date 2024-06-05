@@ -3,7 +3,7 @@ import { getAllContacts, deleteContactById } from "./admin-contact-controller.js
 import { postService, getSerViceById, updateServiceById, deleteServiceById } from "./admin-service-controller.js";
 
 
-export default { 
+export { 
     //user
     getAllUsers,
     getUserById, 

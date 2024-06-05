@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useAuth } from "../store/auth";
+import ServerError from "../Error/ServerError";
 
 
 const Services = () => {
-    const { services } = useAuth();
+    const { serverIssue, services } = useAuth();
     // console.log(services);
 
+    if(serverIssue) return <ServerError />;
     return (
         <>
             <section className="section-services">

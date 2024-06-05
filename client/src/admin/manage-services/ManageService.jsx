@@ -36,7 +36,7 @@ const ManageService = () => {
         <>
             <section className="admin admin-service-section">
                 <div className="container">
-                    <h1>Admin Users Data</h1>
+                    <h1>All services Data</h1>
                     <Link to={'/admin/services/create'}>
                         <i><FaPlus /></i>
                     </Link>
@@ -63,12 +63,12 @@ const ManageService = () => {
                                             <td>{`${description.slice(0, 20)}...`}</td>
                                             <td>{provider}</td>
                                             <td>{price}</td>
-                                            <td>
+                                            <td className="admin-btn">
                                                 <button>
                                                     <Link to={`/admin/services/${_id}/edit`}>Edit</Link>
                                                 </button>
                                             </td>
-                                            <td>
+                                            <td className="admin-btn">
                                                 <button onClick={() => deleteService(_id)}>Delete</button>
                                             </td>
                                         </tr>

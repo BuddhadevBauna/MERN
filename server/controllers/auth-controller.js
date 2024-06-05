@@ -77,5 +77,4 @@ const user = async (req, res) => {
     }
 }
 
-
-export default { register, login, user };
+export { register, login, user };

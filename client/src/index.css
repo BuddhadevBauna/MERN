@@ -359,6 +359,10 @@ a:active {
   background: var(--btn-color);
   color: #fff;
 }
+.server-header {
+  font-size: 9rem;
+  margin-top: 4rem;
+}
 
 
 /* service section */
@@ -418,14 +422,17 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 1.5rem;
+  border: 1px solid #ddd;
   & thead {
     background-color: #f2f2f2;
   }
   & th, td {
     font-size: 1.8rem;
     padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    border: 1px solid #ddd;
+  }
+  & th, .admin-btn {
+    text-align: center;
   }
   & tr:hover {
     background-color: #f2f2f2;
@@ -490,4 +497,29 @@ table {
       }
     }
   }
+}
+
+.admin-dashboard-container {
+  & nav {
+    width: 100%;
+    & li:first-child {
+      order: 1;
+      margin-left: auto;
+    }
+    & li {
+      a {
+        display: flex;
+        gap: 0.5rem;
+        font-size: 2rem;
+        & i {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+.admin-section-header {
+  margin-top: 6rem;
+  text-align: center;
 }

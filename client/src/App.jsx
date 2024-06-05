@@ -6,7 +6,6 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
-import { Error } from "./pages/Error";
 //Auth
 import Register from "./Auth/Register";
 import Login from "./Auth/Login";
@@ -20,6 +19,8 @@ import ManageService from "./admin/manage-services/ManageService";
 import ServiceAdd from "./admin/manage-services/ServiceAdd";
 import ServiceUpdate from "./admin/manage-services/ServiceUpdate";
 import ManageContacts from "./admin/manage-contact/MangeContacts";
+//Error
+import { ClientError } from "./Error/ClientError";
 
 
 const router = createBrowserRouter([
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       { path: "logout", element: <Logout /> },
     ],
   },
-  { path: "/*", element: <Error /> },
+  { path: "/*", element: <ClientError /> },
   {
     path: "admin", element: <AdminLayout />,
     children: [
